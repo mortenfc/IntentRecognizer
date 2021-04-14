@@ -36,6 +36,10 @@ struct Weather
         "Paris",
         "Berlin"};
 
+    std::array<std::string, 2> intent_outputs{
+        "Weather",
+        "City"};
+
     // struct Capitals
     // {
     //     std::string Copenhagen : "Copenhagen";
@@ -64,6 +68,10 @@ struct Calendar
         "Oslo",
         "Paris",
         "Berlin"};
+
+    std::array<std::string, 2> intent_outputs{
+        "Weather",
+        "City"};
 };
 
 #endif /* MAIN */

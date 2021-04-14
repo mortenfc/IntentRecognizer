@@ -8,5 +8,16 @@ include_directories(${Boost_INCLUDE_DIR})
 
 set(PROJECT_SOURCE src/main.cpp)
 set(PROJECT_LIBS ${Boost_LIBRARIES})
-add_executable(${PROJECT_NAME} ${PROJECT_SOURCE})
-target_link_libraries(${PROJECT_NAME} ${PROJECT_LIBS})
+
+add_library(${PROJECT_NAME}_lib ${PROJECT_SOURCE})
+target_link_libraries(${PROJECT_NAME}_lib ${PROJECT_LIBS})
+
+add_executable(${PROJECT_NAME}_exe ${PROJECT_SOURCE})
+target_link_libraries(${PROJECT_NAME}_exe ${PROJECT_LIBS})
+
+INSTALL(
+    DIRECTORY ${CMAKE_SOURCE_DIR}/include/
+    DESTINATION include
+    FILES_MATCHING PATTERN "*.h*"
+)
+INSTALL(TARGETS ${PROJECT_NAME}_exe RUNTIME DESTINATION ${CMAKE_SOURCE_DIR})

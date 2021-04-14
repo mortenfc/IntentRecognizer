@@ -1,7 +1,7 @@
-#include "../include/main.h"
+// #include "../include/main.h"
+#include <main.h>
 #include <boost/algorithm/string.hpp>
 #include <vector>
-// #include <main.h>
 
 // * What is the weather like today? => Prints (Intent: Get Weather)
 // * What is the weather like in Paris today? => Prints (Intent: Get Weather City)
@@ -14,9 +14,13 @@ bool isWordProbablySimilarTo(const std::string& to_test,
                              float min_charactor_percentage_match = 80.0,
                              bool is_case_sensitive = false)
 {
+    for (int i = 0; i < to_test.size(); i++)
+    {
+        std::cout << to_test[i];
+    }
 }
 
-void main()
+int main()
 {
     // std::string in = "Tell me an interesting fact.";
     // std::string in = "Am I free at 13:00 PM tomorrow?";
@@ -26,6 +30,7 @@ void main()
     std::vector<std::string> input_words;
     boost::split(input_words, input_line, [](char c) { return c == ' '; });
 
+    std::string output_prefix = "Intent: ";
     Category category;
     Weather weather;
     Calendar calendar;
@@ -59,4 +64,6 @@ calendar_execution:;
     {
         int b = 5;
     }
+
+    return 1;
 }
