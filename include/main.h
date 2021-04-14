@@ -12,15 +12,9 @@
 // * Am I free at 13:00 PM tomorrow? ==> Prints (Intent: Check calendar)
 // * Tell me an interesting fact. => Prints (Intent: Get Fact)
 
-enum class Category
-{
-    weather,
-    calendar
-};
-
 struct Weather
 {
-    std::array<std::string, 6> mappings{
+    std::array<std::string, 6> weather{
         "weather",
         "rain",
         "sunny",
@@ -28,7 +22,7 @@ struct Weather
         "snow",
         "wet"};
 
-    std::array<std::string, 6> capitals{
+    std::array<std::string, 6> city{
         "Copenhagen",
         "New York",
         "Stockholm",

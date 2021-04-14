@@ -9,40 +9,51 @@
 // * Am I free at 13:00 PM tomorrow? ==> Prints (Intent: Check calendar)
 // * Tell me an interesting fact. => Prints (Intent: Get Fact)
 
-bool isWordProbablySimilarTo(const std::string& to_test,
-                             const std::string& ground_truth,
+bool areWordsMostlySimilar(const std::string& word_1,
+                             const std::string& word_2,
                              float min_charactor_percentage_match = 80.0,
                              bool is_case_sensitive = false)
 {
-    for (int i = 0; i < to_test.size(); i++)
+    uint word_1_size = word_1.size();
+    uint word_2_size = word_2.size();
+    uint loop_count = std::min(word_2_size, word_1_size);
+    int neighbour_index = 0;
+    uint char_match_count = 0;
+    for (int i = 0; i < loop_count; i++)
     {
-        std::cout << to_test[i];
+        std::cout << word_1[i];
+
+        if (word_1[i] == word_2[i])
+        {
+            char_match_count++;
+            continue;
+        }
+        else if
     }
 }
 
 int main()
 {
-    // std::string in = "Tell me an interesting fact.";
-    // std::string in = "Am I free at 13:00 PM tomorrow?";
-    // std::string in = "What is the weather like in New York today?";
-    // std::string in = "What is the weather like in Paris today?";
+    // std::string input_line = "Tell me an interesting fact.";
+    // std::string input_line = "Am I free at 13:00 PM tomorrow?";
+    // std::string input_line = "What is the weather like in New York today?";
+    // std::string input_line = "What is the weather like in Paris today?";
     std::string input_line = "What is the weather like today?";
     std::vector<std::string> input_words;
     boost::split(input_words, input_line, [](char c) { return c == ' '; });
 
     std::string output_prefix = "Intent: ";
-    Category category;
     Weather weather;
     Calendar calendar;
+    uint type_match_count = 0;
 
     for (size_t i = 0; i < input_words.size(); i++)
     {
-        for (std::string weather_word : weather.mappings)
+        for (std::string weather_word : weather.weather)
         {
-            bool is_word_match = isWordProbablySimilarTo(input_words[i], weather_word);
+            bool is_word_match = areWordsMostlySimilar(input_words[i], weather_word);
             if (weather_word == input_words[i])
             {
-                // category = Category::weather;
                 goto weather_execution;
             }
         }
@@ -50,7 +61,6 @@ int main()
         {
             if (calendar_word == input_words[i])
             {
-                // category = Category::calendar;
                 goto calendar_execution;
             }
         }
@@ -58,11 +68,20 @@ int main()
 
 weather_execution:;
     {
-        int a = 3;
+        std::cout << output_prefix;
+        for (size_t i = 0; i < type_match_count; i++)
+        {
+            std::cout << weather.intent_outputs[i];
+        }
+        
     }
 calendar_execution:;
-    {
-        int b = 5;
+    {        
+        std::cout << output_prefix;
+        for (size_t i = 0; i < type_match_count; i++)
+        {
+            std::cout << calendar.intent_outputs[i];
+        }
     }
 
     return 1;
