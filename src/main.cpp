@@ -6,9 +6,11 @@
 // * Am I free at 13:00 PM tomorrow? ==> Prints (Intent: Check calendar)
 // * Tell me an interesting fact. => Prints (Intent: Get Fact)
 
-bool isWordProbablySimilarTo(const std::string& to_test, const std::string& ground_truth, float min_charactor_percentage_match = 80.0, bool is_case_sensitive = false) 
+bool isWordProbablySimilarTo(const std::string& to_test,
+                             const std::string& ground_truth,
+                             float min_charactor_percentage_match = 80.0,
+                             bool is_case_sensitive = false)
 {
-    
 }
 
 void main()
@@ -24,6 +26,7 @@ void main()
 
     Category category;
     Weather weather;
+    Weather weather;
 
     for (size_t i = 0; i < input_words.size(); i++)
     {
@@ -32,15 +35,26 @@ void main()
             bool is_word_match = isWordProbablySimilarTo(input_words[i], weather_word);
             if (weather_word == input_words[i])
             {
-                category = Category::weather;
+                // category = Category::weather;
+                goto weather_execution;
             }
         }
         for (std::string calendar_word in calendar.mappings)
         {
             if (calendar_word == input_words[i])
             {
-                category = Category::calendar;
+                // category = Category::calendar;
+                goto calendar_execution;
             }
         }        
+    }
+
+    weather_execution:;
+    {
+
+    }
+    calendar_execution:;
+    {
+        
     }
 }
