@@ -1,4 +1,7 @@
-#include "main.h"
+#include "../include/main.h"
+#include <boost/algorithm/string.hpp>
+#include <vector>
+// #include <main.h>
 
 // * What is the weather like today? => Prints (Intent: Get Weather)
 // * What is the weather like in Paris today? => Prints (Intent: Get Weather City)
@@ -19,18 +22,17 @@ void main()
     // std::string in = "Am I free at 13:00 PM tomorrow?";
     // std::string in = "What is the weather like in New York today?";
     // std::string in = "What is the weather like in Paris today?";
-    std::string in = "What is the weather like today?";
-    std::istringstream iss(in);
-    std::vector<std::string> input_words(std::istream_iterator<std::string>{iss},
-                                 std::istream_iterator<std::string>();
+    std::string input_line = "What is the weather like today?";
+    std::vector<std::string> input_words;
+    boost::split(input_words, input_line, [](char c) { return c == ' '; });
 
     Category category;
     Weather weather;
-    Weather weather;
+    Calendar calendar;
 
     for (size_t i = 0; i < input_words.size(); i++)
     {
-        for (std::string weather_word in weather.mappings)
+        for (std::string weather_word : weather.mappings)
         {
             bool is_word_match = isWordProbablySimilarTo(input_words[i], weather_word);
             if (weather_word == input_words[i])
@@ -39,22 +41,22 @@ void main()
                 goto weather_execution;
             }
         }
-        for (std::string calendar_word in calendar.mappings)
+        for (std::string calendar_word : calendar.mappings)
         {
             if (calendar_word == input_words[i])
             {
                 // category = Category::calendar;
                 goto calendar_execution;
             }
-        }        
+        }
     }
 
-    weather_execution:;
+weather_execution:;
     {
-
+        int a = 3;
     }
-    calendar_execution:;
+calendar_execution:;
     {
-        
+        int b = 5;
     }
 }

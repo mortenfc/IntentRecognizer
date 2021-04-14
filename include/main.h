@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <array>
+#include <istream>
 
 // * What is the weather like today? => Prints (Intent: Get Weather)
 // * What is the weather like in Paris today? => Prints (Intent: Get Weather City)
@@ -15,7 +16,7 @@ enum class Category
 {
     weather,
     calendar
-}
+};
 
 struct Weather
 {
@@ -63,10 +64,6 @@ struct Calendar
         "Oslo",
         "Paris",
         "Berlin"};
-};
-
-struct Category : Weather
-{
 };
 
 #endif /* MAIN */
