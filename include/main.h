@@ -31,13 +31,27 @@ struct Weather
         "Berlin"};
 
     std::array<std::string, 2> intent_outputs{
-        "Weather",
+        "Get Weather",
         "City"};
 };
 
 struct Calendar
 {
-    std::array<std::string, 6> mappings{
+    std::array<std::string, 6> calendar{
+        "tomorrow",
+        "free",
+        "time",
+        "available",
+        "today",
+        "after tomorrow"};
+
+    std::array<std::string, 2> intent_outputs{
+        "Check Calendar"};
+};
+
+struct Fact
+{
+    std::array<std::string, 6> calendar{
         "weather",
         "rain",
         "sunny",
@@ -45,17 +59,8 @@ struct Calendar
         "snow",
         "wet"};
 
-    std::array<std::string, 6> capitals{
-        "Copenhagen",
-        "New York",
-        "Stockholm",
-        "Oslo",
-        "Paris",
-        "Berlin"};
-
     std::array<std::string, 2> intent_outputs{
-        "Weather",
-        "City"};
+        "Get Fact"};
 };
 
 #endif /* MAIN */

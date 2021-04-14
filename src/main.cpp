@@ -1,4 +1,3 @@
-// #include "../include/main.h"
 #include <main.h>
 #include <boost/algorithm/string.hpp>
 #include <vector>
@@ -10,26 +9,57 @@
 // * Tell me an interesting fact. => Prints (Intent: Get Fact)
 
 bool areWordsMostlySimilar(const std::string& word_1,
-                             const std::string& word_2,
-                             float min_charactor_percentage_match = 80.0,
-                             bool is_case_sensitive = false)
+                            const std::string& word_2,
+                            float min_charactor_percentage_match = 80.0,
+                            bool is_case_sensitive = false)
 {
-    uint word_1_size = word_1.size();
-    uint word_2_size = word_2.size();
-    uint loop_count = std::min(word_2_size, word_1_size);
-    int neighbour_index = 0;
-    uint char_match_count = 0;
-    for (int i = 0; i < loop_count; i++)
+    std::string short_word, long_word;
+    if (word_1.size() > word_2.size())
     {
-        std::cout << word_1[i];
-
-        if (word_1[i] == word_2[i])
-        {
-            char_match_count++;
-            continue;
-        }
-        else if
+        long_word = word_1;
+        short_word = word_2;
     }
+    else
+    {
+        long_word = word_2;
+        short_word = word_1;
+    }
+    uint short_word_size = short_word.size();
+    uint long_word_size = long_word.size();
+    uint delta_size = long_word_size - short_word_size;
+    uint short_word_shift = 0;
+    uint char_match_count = 0;
+    do
+    {    
+        for (int i = 0; i < short_word_size; i++)
+        {
+            std::cout << short_word[i];
+
+            if (short_word[i] == long_word[i + short_word_shift])
+            {
+                char_match_count++;
+            }
+        }
+        short_word_shift++;
+    }
+    while (short_word_shift <= delta_size);
+
+    float match_percentage = 100.0 * short_word_size / char_match_count;
+    bool is_match = match_percentage > min_charactor_percentage_match;
+
+    if(is_match)
+    {
+        return true;
+    }
+    else
+    {
+        char_match_count = 0;
+        //* Try shifting each word up to 2 characters forwards and then comparing
+    }
+
+    float match_percentage = 100.0 * short_word_size / char_match_count;
+    bool is_match = match_percentage > min_charactor_percentage_match;
+    return is_match
 }
 
 int main()
@@ -52,14 +82,15 @@ int main()
         for (std::string weather_word : weather.weather)
         {
             bool is_word_match = areWordsMostlySimilar(input_words[i], weather_word);
-            if (weather_word == input_words[i])
+            if (is_word_match)
             {
                 goto weather_execution;
             }
         }
-        for (std::string calendar_word : calendar.mappings)
+        for (std::string calendar_word : calendar.calendar)
         {
-            if (calendar_word == input_words[i])
+            bool is_word_match = areWordsMostlySimilar(input_words[i], calendar_word);
+            if (is_word_match)
             {
                 goto calendar_execution;
             }
