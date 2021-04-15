@@ -14,53 +14,27 @@
 
 struct Weather
 {
-    std::array<std::string, 6> weather{
-        "weather",
-        "rain",
-        "sunny",
-        "warm",
-        "snow",
-        "wet"};
+    static const uint array_size = 6;
 
-    std::array<std::string, 6> city{
-        "Copenhagen",
-        "New York",
-        "Stockholm",
-        "Oslo",
-        "Paris",
-        "Berlin"};
+    std::array<std::string, array_size> weather{"weather", "rain", "sunny", "warm", "snow", "wet"};
 
-    std::array<std::string, 2> intent_outputs{
-        "Get Weather",
-        "City"};
+    std::array<std::string, array_size> city{"Copenhagen", "New York", "Stockholm", "Oslo", "Paris", "Berlin"};
+
+    std::array<std::string, 2> intent_outputs{"Get Weather", "City"};
 };
 
 struct Calendar
 {
-    std::array<std::string, 6> calendar{
-        "tomorrow",
-        "free",
-        "time",
-        "available",
-        "today",
-        "after tomorrow"};
+    std::array<std::string, 6> calendar{"tomorrow", "free", "time", "available", "today", "after tomorrow"};
 
-    std::array<std::string, 2> intent_outputs{
-        "Check Calendar"};
+    std::array<std::string, 1> intent_outputs{"Check Calendar"};
 };
 
 struct Fact
 {
-    std::array<std::string, 6> calendar{
-        "weather",
-        "rain",
-        "sunny",
-        "warm",
-        "snow",
-        "wet"};
+    std::array<std::string, 6> fact{"fact", "interesting", "bored", "something", "random", "knowledge"};
 
-    std::array<std::string, 2> intent_outputs{
-        "Get Fact"};
+    std::array<std::string, 1> intent_outputs{"Get Fact"};
 };
 
 #endif /* MAIN */

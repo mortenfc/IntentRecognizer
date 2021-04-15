@@ -15,9 +15,13 @@ target_link_libraries(${PROJECT_NAME}_lib ${PROJECT_LIBS})
 add_executable(${PROJECT_NAME}_exe ${PROJECT_SOURCE})
 target_link_libraries(${PROJECT_NAME}_exe ${PROJECT_LIBS})
 
-INSTALL(
-    DIRECTORY ${CMAKE_SOURCE_DIR}/include/
-    DESTINATION include
-    FILES_MATCHING PATTERN "*.h*"
-)
-INSTALL(TARGETS ${PROJECT_NAME}_exe RUNTIME DESTINATION ${CMAKE_SOURCE_DIR})
+install(
+  DIRECTORY ${CMAKE_SOURCE_DIR}/include/
+  DESTINATION include
+  FILES_MATCHING
+  PATTERN "*.h*")
+install(TARGETS ${PROJECT_NAME}_exe RUNTIME DESTINATION ${CMAKE_SOURCE_DIR})
+
+set(TESTS tests/tests.cpp)
+add_executable(${PROJECT_NAME}_test ${TESTS})
+gtest_add_tests(TARGET ${PROJECT_NAME}_test)
