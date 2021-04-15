@@ -1,9 +1,9 @@
 #include <recognize_intent.h>
 #include <gtest/gtest.h>
+#include <iostream>
 
 TEST(recognize_intent_tests, basic_line_input)
 {
-    std::string input_line = "Tell me an interesting fact.";
     // std::string input_line = "Am I free at 13:00 PM tomorrow?";
     // std::string input_line = "What is the weather like in New York today?";
     // std::string input_line = "What is the weather like in Paris today?";
@@ -13,7 +13,26 @@ TEST(recognize_intent_tests, basic_line_input)
     // * What is the weather like in New York today? => Prints (Intent: Get Weather City)
     // * Am I free at 13:00 PM tomorrow? ==> Prints (Intent: Check calendar)
     // * Tell me an interesting fact. => Prints (Intent: Get Fact)
-    ASSERT_TRUE(true);
+
+    std::string input_line = " What is the weather like today?";
+    std::string output = recognizeIntent(input_line);
+    ASSERT_EQ(output, "Intent: Get Weather");
+
+    std::string input_line = "What is the weather like in Paris today?";
+    output = recognizeIntent(input_line);
+    ASSERT_EQ(output, "Intent: Get Weather City");
+
+    std::string input_line = "What is the weather like in New York today?";
+    output = recognizeIntent(input_line);
+    ASSERT_EQ(output, "Intent: Get Weather City");
+
+    std::string input_line = "Am I free at 13:00 PM tomorrow?";
+    output = recognizeIntent(input_line);
+    ASSERT_EQ(output, "Intent: Check calendar");
+
+    std::string input_line = "Tell me an interesting fact.";
+    output = recognizeIntent(input_line);
+    ASSERT_EQ(output, "Intent: Get Fact");
 }
 
 TEST(recognize_intent_tests, same_size_words_different_chars)

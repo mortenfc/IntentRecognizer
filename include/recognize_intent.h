@@ -5,7 +5,7 @@
 #ifndef RECOGNIZEINTENT
 #define RECOGNIZEINTENT
 
-void recognizeIntent(const std::string& input_line);
+std::string recognizeIntent(const std::string& input_line);
 
 struct Weather
 {

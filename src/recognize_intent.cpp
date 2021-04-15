@@ -11,7 +11,7 @@
 // * Am I free at 13:00 PM tomorrow? ==> Prints (Intent: Check calendar)
 // * Tell me an interesting fact. => Prints (Intent: Get Fact)
 
-void recognizeIntent(const std::string& input_line)
+std::string recognizeIntent(const std::string& input_line)
 {
     std::vector<std::string> input_words;
     boost::split(input_words, input_line, [](char c) { return c == ' '; });
@@ -66,44 +66,43 @@ void recognizeIntent(const std::string& input_line)
         goto fact_execution;
     }
 
-    std::cout << "No intent found";
-    return;
+    return "No intent found";
 
 weather_execution:;
     {
-        std::cout << output_prefix;
+        std::string output = output_prefix;
         for (size_t i = 0; i < type_match_count; i++)
         {
-            std::cout << weather.intent_outputs[i] << " ";
+            output += weather.intent_outputs[i] + " ";
         }
 
-        return;
+        return output;
     }
 calendar_execution:;
     {
-        std::cout << output_prefix;
+        std::string output = output_prefix;
         for (size_t i = 0; i < type_match_count; i++)
         {
-            std::cout << calendar.intent_outputs[i];
+            output += calendar.intent_outputs[i] + " ";
         }
 
-        return;
+        return output;
     }
 fact_execution:;
     {
-        std::cout << output_prefix;
+        std::string output = output_prefix;
         for (size_t i = 0; i < type_match_count; i++)
         {
-            std::cout << fact.intent_outputs[i];
+            output += fact.intent_outputs[i] + " ";
         }
 
-        return;
+        return output;
     }
 }
 
 int main()
 {
     const std::string input_line = "Tell me an interesting fact.";
-    recognizeIntent(input_line);
+    std::cout << recognizeIntent(input_line);
     return 1;
 }
