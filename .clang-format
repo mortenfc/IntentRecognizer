@@ -62,8 +62,6 @@ SpacesInParentheses: 'false'
 SpacesInSquareBrackets: 'false'
 SpacesBeforeTrailingComments: '2'
 
-Standard: Cpp17
-
 TabWidth: '4'
 
 UseTab: Never

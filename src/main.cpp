@@ -9,9 +9,9 @@
 // * Tell me an interesting fact. => Prints (Intent: Get Fact)
 
 bool areWordsMostlySimilar(const std::string& word_1,
-                            const std::string& word_2,
-                            float min_charactor_percentage_match = 80.0,
-                            bool is_case_sensitive = false)
+                           const std::string& word_2,
+                           float min_charactor_percentage_match = 80.0,
+                           bool is_case_sensitive = false)
 {
     std::string short_word, long_word;
     if (word_1.size() > word_2.size())
@@ -30,7 +30,7 @@ bool areWordsMostlySimilar(const std::string& word_1,
     uint short_word_shift = 0;
     uint char_match_count = 0;
     do
-    {    
+    {
         for (int i = 0; i < short_word_size; i++)
         {
             std::cout << short_word[i];
@@ -41,25 +41,28 @@ bool areWordsMostlySimilar(const std::string& word_1,
             }
         }
         short_word_shift++;
-    }
-    while (short_word_shift <= delta_size);
+    } while (short_word_shift <= delta_size);
 
     float match_percentage = 100.0 * short_word_size / char_match_count;
     bool is_match = match_percentage > min_charactor_percentage_match;
 
-    if(is_match)
+    if (is_match)
     {
         return true;
     }
     else
     {
         char_match_count = 0;
+        short_word_shift = 1;
+        while (short_word_shift <= 2)
+        {
+        }
         //* Try shifting each word up to 2 characters forwards and then comparing
     }
 
     float match_percentage = 100.0 * short_word_size / char_match_count;
     bool is_match = match_percentage > min_charactor_percentage_match;
-    return is_match
+    return is_match;
 }
 
 int main()
@@ -104,10 +107,9 @@ weather_execution:;
         {
             std::cout << weather.intent_outputs[i];
         }
-        
     }
 calendar_execution:;
-    {        
+    {
         std::cout << output_prefix;
         for (size_t i = 0; i < type_match_count; i++)
         {
