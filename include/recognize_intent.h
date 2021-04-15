@@ -1,15 +1,11 @@
 
-#include <iostream>
 #include <string>
 #include <array>
 
-#ifndef MAIN
-#define MAIN
-// * What is the weather like today? => Prints (Intent: Get Weather)
-// * What is the weather like in Paris today? => Prints (Intent: Get Weather City)
-// * What is the weather like in New York today? => Prints (Intent: Get Weather City)
-// * Am I free at 13:00 PM tomorrow? ==> Prints (Intent: Check calendar)
-// * Tell me an interesting fact. => Prints (Intent: Get Fact)
+#ifndef RECOGNIZEINTENT
+#define RECOGNIZEINTENT
+
+void recognizeIntent(const std::string& input_line);
 
 struct Weather
 {
@@ -36,4 +32,4 @@ struct Fact
     std::array<std::string, 1> intent_outputs{"Get Fact"};
 };
 
-#endif /* MAIN */
+#endif /* RECOGNIZEINTENT */

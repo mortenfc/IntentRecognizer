@@ -1,7 +1,7 @@
-#include <are_words_similar.h>
+#include <recognize_intent.h>
 #include <gtest/gtest.h>
 
-TEST(are_words_similar, basic_input)
+TEST(recognize_intent_tests, basic_line_input)
 {
     std::string input_line = "Tell me an interesting fact.";
     // std::string input_line = "Am I free at 13:00 PM tomorrow?";
@@ -16,12 +16,12 @@ TEST(are_words_similar, basic_input)
     ASSERT_TRUE(true);
 }
 
-TEST(are_words_similar, same_size_different_chars)
+TEST(recognize_intent_tests, same_size_words_different_chars)
 {
     ASSERT_TRUE(true);
 }
 
-TEST(are_words_similar, different_size_different_chars)
+TEST(recognize_intent_tests, different_size_words_different_chars)
 {
     ASSERT_TRUE(true);
 }

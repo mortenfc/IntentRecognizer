@@ -1,7 +1,8 @@
 #include <boost/algorithm/string.hpp>
 #include <vector>
 
-#include <main.h>
+#include <iostream>
+#include <recognize_intent.h>
 #include <are_words_similar.h>
 
 // * What is the weather like today? => Prints (Intent: Get Weather)
@@ -10,13 +11,8 @@
 // * Am I free at 13:00 PM tomorrow? ==> Prints (Intent: Check calendar)
 // * Tell me an interesting fact. => Prints (Intent: Get Fact)
 
-int main()
+void recognizeIntent(const std::string& input_line)
 {
-    std::string input_line = "Tell me an interesting fact.";
-    // std::string input_line = "Am I free at 13:00 PM tomorrow?";
-    // std::string input_line = "What is the weather like in New York today?";
-    // std::string input_line = "What is the weather like in Paris today?";
-    // std::string input_line = "What is the weather like today?";
     std::vector<std::string> input_words;
     boost::split(input_words, input_line, [](char c) { return c == ' '; });
 
@@ -70,6 +66,9 @@ int main()
         goto fact_execution;
     }
 
+    std::cout << "No intent found";
+    return;
+
 weather_execution:;
     {
         std::cout << output_prefix;
@@ -78,7 +77,7 @@ weather_execution:;
             std::cout << weather.intent_outputs[i] << " ";
         }
 
-        return 1;
+        return;
     }
 calendar_execution:;
     {
@@ -88,7 +87,7 @@ calendar_execution:;
             std::cout << calendar.intent_outputs[i];
         }
 
-        return 1;
+        return;
     }
 fact_execution:;
     {
@@ -98,6 +97,13 @@ fact_execution:;
             std::cout << fact.intent_outputs[i];
         }
 
-        return 1;
+        return;
     }
+}
+
+int main()
+{
+    const std::string input_line = "Tell me an interesting fact.";
+    recognizeIntent(input_line);
+    return 1;
 }
