@@ -1,11 +1,10 @@
-#ifndef MAIN
-#define MAIN
 
 #include <iostream>
 #include <string>
 #include <array>
-#include <istream>
 
+#ifndef MAIN
+#define MAIN
 // * What is the weather like today? => Prints (Intent: Get Weather)
 // * What is the weather like in Paris today? => Prints (Intent: Get Weather City)
 // * What is the weather like in New York today? => Prints (Intent: Get Weather City)
