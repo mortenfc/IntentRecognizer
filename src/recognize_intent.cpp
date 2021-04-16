@@ -77,6 +77,7 @@ weather_execution:;
         {
             output += weather.intent_outputs[i] + " ";
         }
+        output.pop_back();
 
         return output;
     }
@@ -87,6 +88,7 @@ calendar_execution:;
         {
             output += calendar.intent_outputs[i] + " ";
         }
+        output.pop_back();
 
         return output;
     }
@@ -97,6 +99,7 @@ fact_execution:;
         {
             output += fact.intent_outputs[i] + " ";
         }
+        output.pop_back();
 
         return output;
     }
