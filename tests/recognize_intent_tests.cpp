@@ -1,6 +1,8 @@
+
+#include <iostream>
+#include <string>
 #include <recognize_intent.h>
 #include <gtest/gtest.h>
-#include <iostream>
 
 TEST(recognize_intent_tests, basic_line_input)
 {
@@ -18,19 +20,19 @@ TEST(recognize_intent_tests, basic_line_input)
     std::string output = recognizeIntent(input_line);
     ASSERT_EQ(output, "Intent: Get Weather");
 
-    std::string input_line = "What is the weather like in Paris today?";
+    input_line = "What is the weather like in Paris today?";
     output = recognizeIntent(input_line);
     ASSERT_EQ(output, "Intent: Get Weather City");
 
-    std::string input_line = "What is the weather like in New York today?";
+    input_line = "What is the weather like in New York today?";
     output = recognizeIntent(input_line);
     ASSERT_EQ(output, "Intent: Get Weather City");
 
-    std::string input_line = "Am I free at 13:00 PM tomorrow?";
+    input_line = "Am I free at 13:00 PM tomorrow?";
     output = recognizeIntent(input_line);
     ASSERT_EQ(output, "Intent: Check calendar");
 
-    std::string input_line = "Tell me an interesting fact.";
+    input_line = "Tell me an interesting fact.";
     output = recognizeIntent(input_line);
     ASSERT_EQ(output, "Intent: Get Fact");
 }

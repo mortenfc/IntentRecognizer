@@ -1,11 +1,9 @@
 
+#ifndef RECOGNIZEINTENT_H
+#define RECOGNIZEINTENT_H
+
 #include <string>
 #include <array>
-
-#ifndef RECOGNIZEINTENT
-#define RECOGNIZEINTENT
-
-std::string recognizeIntent(const std::string& input_line);
 
 struct Weather
 {
@@ -32,4 +30,6 @@ struct Fact
     std::array<std::string, 1> intent_outputs{"Get Fact"};
 };
 
-#endif /* RECOGNIZEINTENT */
+std::string recognizeIntent(const std::string& input_line);
+
+#endif /* RECOGNIZEINTENT_H */

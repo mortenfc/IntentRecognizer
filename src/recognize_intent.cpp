@@ -1,9 +1,11 @@
-#include <boost/algorithm/string.hpp>
-#include <vector>
 
-#include <iostream>
 #include <recognize_intent.h>
 #include <are_words_similar.h>
+
+#include <boost/algorithm/string.hpp>
+#include <vector>
+#include <string>
+#include <iostream>
 
 // * What is the weather like today? => Prints (Intent: Get Weather)
 // * What is the weather like in Paris today? => Prints (Intent: Get Weather City)
@@ -98,11 +100,4 @@ fact_execution:;
 
         return output;
     }
-}
-
-int main()
-{
-    const std::string input_line = "Tell me an interesting fact.";
-    std::cout << recognizeIntent(input_line);
-    return 1;
 }
