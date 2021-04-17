@@ -1,27 +1,153 @@
 #include <are_words_similar.h>
 #include <gtest/gtest.h>
 
-TEST(are_words_similar, basic_input)
+TEST(findFirstMismatchIndex, character_typo)
 {
-    std::string input_line = "Tell me an interesting fact.";
-    // std::string input_line = "Am I free at 13:00 PM tomorrow?";
-    // std::string input_line = "What is the weather like in New York today?";
-    // std::string input_line = "What is the weather like in Paris today?";
-    // std::string input_line = "What is the weather like today?";
-    // * What is the weather like today? => Prints (Intent: Get Weather)
-    // * What is the weather like in Paris today? => Prints (Intent: Get Weather City)
-    // * What is the weather like in New York today? => Prints (Intent: Get Weather City)
-    // * Am I free at 13:00 PM tomorrow? ==> Prints (Intent: Check calendar)
-    // * Tell me an interesting fact. => Prints (Intent: Get Fact)
+    std::string short_word = "waether";
+    std::string long_word = "weather";
+
+    uint first_mismatch_index = findFirstMismatchIndex(short_word.size(), long_word, short_word);
+
+    ASSERT_EQ(first_mismatch_index, 1);
+}
+
+TEST(isMatchWithShortWordSkipping, length_mismatch_char_typo)
+{
+    std::string short_word = "weather";
+    std::string long_word = "watherrr";
+    float min_charactor_percentage_match = 70.0;
+    uint first_mismatch_index = 2;
+
+    bool is_match = isMatchWithShortWordSkipping(short_word.size(),
+                                                 long_word.size(),
+                                                 long_word,
+                                                 short_word,
+                                                 min_charactor_percentage_match,
+                                                 first_mismatch_index,
+                                                 "isMatchWithShortWordSkipping");
+
+    ASSERT_TRUE(is_match);
+}
+
+TEST(isMatchWithLongWordSkipping, all_checks)
+{
+    std::string short_word = "wether";
+    std::string long_word = "weather";
+    float min_charactor_percentage_match = 70.0;
+    uint first_mismatch_index = 2;
+    bool is_match = isMatchWithLongWordSkipping(short_word.size(),
+                                                long_word.size(),
+                                                long_word,
+                                                short_word,
+                                                min_charactor_percentage_match,
+                                                first_mismatch_index);
+    ASSERT_TRUE(is_match);
+
+    short_word = "wher";
+    long_word = "weather";
+    min_charactor_percentage_match = 10.0;
+    first_mismatch_index = 1;
+    is_match = isMatchWithLongWordSkipping(short_word.size(),
+                                           long_word.size(),
+                                           long_word,
+                                           short_word,
+                                           min_charactor_percentage_match,
+                                           first_mismatch_index);
+    ASSERT_TRUE(is_match);
+
+    short_word = "weather";
+    long_word = "wther";
+    min_charactor_percentage_match = 90.0;
+    first_mismatch_index = 1;
+    is_match = isMatchWithLongWordSkipping(short_word.size(),
+                                           long_word.size(),
+                                           long_word,
+                                           short_word,
+                                           min_charactor_percentage_match,
+                                           first_mismatch_index);
+    ASSERT_FALSE(is_match);
+
+    short_word = "wather";
+    long_word = "weather";
+    min_charactor_percentage_match = 100.0;
+    first_mismatch_index = 1;
+    is_match = isMatchWithLongWordSkipping(short_word.size(),
+                                           long_word.size(),
+                                           long_word,
+                                           short_word,
+                                           min_charactor_percentage_match,
+                                           first_mismatch_index);
+    ASSERT_FALSE(is_match);
+}
+
+TEST(areWordsSimilar, all_checks)
+{
+    std::string word_1 = "weather";
+    std::string word_2 = "weather";
+    float min_charactor_percentage_match = 100.0;
+    bool is_match = areWordsSimilar(word_1, word_2, min_charactor_percentage_match);
+    ASSERT_TRUE(is_match);
+
+    word_1 = "wEaTher";
+    word_2 = "WeatheR";
+    min_charactor_percentage_match = 100.0;
+    is_match = areWordsSimilar(word_1, word_2, min_charactor_percentage_match);
+    ASSERT_TRUE(is_match);
+
+    word_1 = "wEthEr";
+    word_2 = "weaTher";
+    min_charactor_percentage_match = 80.0;
+    is_match = areWordsSimilar(word_1, word_2, min_charactor_percentage_match);
+    ASSERT_TRUE(is_match);
+
+    word_1 = "wher";
+    word_2 = "weather";
+    min_charactor_percentage_match = 20.0;
+    is_match = areWordsSimilar(word_1, word_2, min_charactor_percentage_match);
+    ASSERT_TRUE(is_match);
+
+    word_1 = "weather";
+    word_2 = "wther";
+    min_charactor_percentage_match = 90.0;
+    is_match = areWordsSimilar(word_1, word_2, min_charactor_percentage_match);
+    ASSERT_FALSE(is_match);
+
+    word_1 = "wather";
+    word_2 = "weather";
+    min_charactor_percentage_match = 80.0;
+    is_match = areWordsSimilar(word_1, word_2, min_charactor_percentage_match);
+    ASSERT_TRUE(is_match);
+
+    word_1 = "watherrr";
+    word_2 = "Weather";
+    min_charactor_percentage_match = 60.0;
+    is_match = areWordsSimilar(word_1, word_2, min_charactor_percentage_match);
+    ASSERT_TRUE(is_match);
+
+    word_1 = "wwweather";
+    word_2 = "Weather";
+    min_charactor_percentage_match = 60.0;
+    is_match = areWordsSimilar(word_1, word_2, min_charactor_percentage_match);
+    ASSERT_TRUE(is_match);
+
+    word_1 = "wwweatherrr";
+    word_2 = "Weather";
+    min_charactor_percentage_match = 60.0;
+    is_match = areWordsSimilar(word_1, word_2, min_charactor_percentage_match);
+    ASSERT_FALSE(is_match);
+}
+
+TEST(areWordsSimilar, same_size_different_chars)
+{
     ASSERT_TRUE(true);
 }
 
-TEST(are_words_similar, same_size_different_chars)
+TEST(areWordsSimilar, different_size_different_chars)
 {
     ASSERT_TRUE(true);
 }
 
-TEST(are_words_similar, different_size_different_chars)
+TEST(areWordsSimilar, is_case_insensitive)
 {
     ASSERT_TRUE(true);
 }

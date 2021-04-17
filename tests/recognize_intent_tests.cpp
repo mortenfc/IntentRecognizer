@@ -4,7 +4,7 @@
 #include <recognize_intent.h>
 #include <gtest/gtest.h>
 
-TEST(recognize_intent_tests, basic_line_input)
+TEST(recognizeIntent, basic_line_input)
 {
     // std::string input_line = "Am I free at 13:00 PM tomorrow?";
     // std::string input_line = "What is the weather like in New York today?";
@@ -37,14 +37,14 @@ TEST(recognize_intent_tests, basic_line_input)
     ASSERT_EQ(output, "Intent: Get Fact") << "With input line: \"" + input_line + "\"";
 }
 
-TEST(recognize_intent_tests, same_size_words_different_chars)
+TEST(recognizeIntent, same_size_words_different_chars)
 {
-    // std::string input_line = "What is the waether like tuday?";
-    // std::string output = recognizeIntent(input_line);
-    // ASSERT_EQ(output, "Intent: Get Weather") << "With input line: \"" + input_line + "\"";
-    // input_line = "Whatis the wether like tday?";
-    // output = recognizeIntent(input_line);
-    // ASSERT_EQ(output, "Intent: Get Weather") << "With input line: \"" + input_line + "\"";
+    std::string input_line = "What is the waether like tuday?";
+    std::string output = recognizeIntent(input_line);
+    ASSERT_EQ(output, "Intent: Get Weather") << "With input line: \"" + input_line + "\"";
+    input_line = "Whatis the wether like tday?";
+    output = recognizeIntent(input_line);
+    ASSERT_EQ(output, "Intent: Get Weather") << "With input line: \"" + input_line + "\"";
 
     // input_line = "What is the wether like in Pais today?";
     // output = recognizeIntent(input_line);
@@ -66,7 +66,7 @@ TEST(recognize_intent_tests, same_size_words_different_chars)
     // ASSERT_EQ(output, "Intent: Get Fact") << "With input line: \"" + input_line + "\"";
 }
 
-TEST(recognize_intent_tests, different_size_words_different_chars)
+TEST(recognizeIntent, different_size_words_different_chars)
 {
     ASSERT_TRUE(true);
 }

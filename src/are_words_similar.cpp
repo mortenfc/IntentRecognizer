@@ -36,45 +36,6 @@ bool isMatchWithLongWordSkipping(const uint short_word_size,
                                         "isMatchWithLongWordSkipping");
 }
 
-// {
-//     char_match_count = 0;
-//     uint long_word_char_count_skip = 1;
-//     while (long_word_char_count_skip <= 2)
-//     {
-//         uint long_word_idx = 0;
-//         uint smaller_size = std::min(short_word_size, long_word_size - long_word_char_count_skip);
-//         for (int i = 0; i < smaller_size; i++)
-//         {
-//             // std::cout << short_word[i] << " ";
-
-//             if (i >= first_mismatch_index)
-//             {
-//                 long_word_idx = i + long_word_char_count_skip;
-//             }
-//             else
-//             {
-//                 long_word_idx = i;
-//             }
-//             if (short_word[i] == long_word[long_word_idx])
-//             {
-//                 char_match_count++;
-//             }
-//         }
-//         long_word_char_count_skip++;
-//     }
-//     match_percentage = 100.0 * char_match_count / long_word_size;
-//     is_match = match_percentage > min_charactor_percentage_match;
-//     if (is_match)
-//     {
-//         std::cout << "\nLong word skip at first mismatch:\n";
-//         std::cout << "match_percentage: " << match_percentage << std::endl;
-//         std::cout << "char_match_count: " << char_match_count << std::endl;
-//         std::cout << "long_word_size: " << long_word_size << std::endl;
-//         std::cout << "long_word_char_count_skip: " << long_word_char_count_skip << std::endl;
-//         return true;
-//     }
-// }
-
 bool isMatchWithShortWordSkipping(const uint short_word_size,
                                   const uint long_word_size,
                                   const std::string& long_word,
@@ -103,18 +64,24 @@ bool isMatchWithShortWordSkipping(const uint short_word_size,
             {
                 char_match_count++;
             }
+            // std::cout << "--------------" << std::endl;
+            // std::cout << "i: " << i << std::endl;
+            // std::cout << "short_word_idx: " << short_word_idx << std::endl;
+            // std::cout << "short word char: " << short_word[short_word_idx] << std::endl;
+            // std::cout << "long word char: " << long_word[i] << std::endl;
+            // std::cout << "char_match_count: " << char_match_count << std::endl;
         }
         short_word_char_count_skip++;
     }
     float match_percentage = 100.0 * char_match_count / long_word_size;
-    bool is_match = match_percentage > min_charactor_percentage_match;
+    bool is_match = match_percentage >= min_charactor_percentage_match;
+    std::cout << "-----------------" << title << "----------------\n";
+    std::cout << "match_percentage: " << match_percentage << std::endl;
+    std::cout << "char_match_count: " << char_match_count << std::endl;
+    std::cout << "long_word_size: " << long_word_size << std::endl;
+    std::cout << "short_word_char_count_skip: " << short_word_char_count_skip << std::endl;
     if (is_match)
     {
-        std::cout << "\ntitle:\n";
-        std::cout << "match_percentage: " << match_percentage << std::endl;
-        std::cout << "char_match_count: " << char_match_count << std::endl;
-        std::cout << "long_word_size: " << long_word_size << std::endl;
-        std::cout << "short_word_char_count_skip: " << short_word_char_count_skip << std::endl;
         return true;
     }
     return false;
@@ -142,7 +109,7 @@ bool isMatchWithoutSkipping(const uint short_word_size,
     } while (short_word_char_count_skip <= delta_size);
 
     float match_percentage = 100.0 * char_match_count / long_word_size;
-    bool is_match = match_percentage > min_charactor_percentage_match;
+    bool is_match = match_percentage >= min_charactor_percentage_match;
     if (is_match)
     {
         std::cout << "\nisMatchWithoutSkipping():\n";

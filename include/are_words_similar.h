@@ -22,6 +22,6 @@ bool isMatchWithShortWordSkipping(const uint short_word_size,
 
 bool areWordsSimilar(std::string word_1,
                      std::string word_2,
-                     const float min_charactor_percentage_match = 80.0,
+                     const float min_charactor_percentage_match = 60.0,
                      const bool is_case_sensitive = false);
 #endif /* AREWORDSSIMILAR_H */
