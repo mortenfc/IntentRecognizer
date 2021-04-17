@@ -7,7 +7,7 @@
 #include <string>
 #include <iostream>
 
-std::string recognizeIntent(const std::string& input_line)
+std::string recognizeIntent(const std::string& input_line, const bool debug_print)
 {
     std::vector<std::string> input_words;
     boost::split(input_words, input_line, [](char c) { return c == ' '; });
@@ -26,13 +26,14 @@ std::string recognizeIntent(const std::string& input_line)
     {
         for (size_t j = 0; j < weather.array_size; j++)
         {
-            is_weather_match = is_weather_match | areWordsSimilar(input_words[i], weather.weather[j]);
-            is_city_match = is_city_match | areWordsSimilar(input_words[i], weather.city[j]);
+            is_weather_match = is_weather_match | areWordsSimilar(input_words[i], weather.weather[j], debug_print);
+            is_city_match = is_city_match | areWordsSimilar(input_words[i], weather.city[j], debug_print);
             if (is_weather_match + is_city_match < 2 and i < input_words_size - 1)
             {
-                is_weather_match =
-                    is_weather_match | areWordsSimilar(input_words[i] + input_words[i + 1], weather.weather[j]);
-                is_city_match = is_city_match | areWordsSimilar(input_words[i] + input_words[i + 1], weather.city[j]);
+                is_weather_match = is_weather_match |
+                                   areWordsSimilar(input_words[i] + input_words[i + 1], weather.weather[j], debug_print);
+                is_city_match =
+                    is_city_match | areWordsSimilar(input_words[i] + input_words[i + 1], weather.city[j], debug_print);
             }
         }
     }
@@ -45,7 +46,7 @@ std::string recognizeIntent(const std::string& input_line)
     {
         for (std::string calendar_word : calendar.calendar)
         {
-            is_calendar_match = is_calendar_match | areWordsSimilar(input_words[i], calendar_word);
+            is_calendar_match = is_calendar_match | areWordsSimilar(input_words[i], calendar_word, debug_print);
         }
     }
     type_match_count = uint(is_calendar_match);
@@ -57,7 +58,7 @@ std::string recognizeIntent(const std::string& input_line)
     {
         for (std::string fact_word : fact.fact)
         {
-            is_fact_match = is_fact_match | areWordsSimilar(input_words[i], fact_word);
+            is_fact_match = is_fact_match | areWordsSimilar(input_words[i], fact_word, debug_print);
         }
     }
     type_match_count = uint(is_fact_match);

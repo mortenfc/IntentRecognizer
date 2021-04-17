@@ -84,6 +84,15 @@ bool isMatchWithShortWordSkipping(const uint short_word_size,
         short_word_char_count_skip++;
         match_percentage = 100.0 * char_match_count / long_word_size;
         is_match = match_percentage >= min_charactor_percentage_match;
+        // std::cout << "-----------------" << title << " | short_word_char_count_skip: " << short_word_char_count_skip
+        //           << "----------------\n";
+        // std::cout << "short_word_char_count_skip: " << short_word_char_count_skip << std::endl;
+        // std::cout << "match_percentage: " << match_percentage << std::endl;
+        // std::cout << "char_match_count: " << char_match_count << std::endl;
+        // std::cout << "long_word_size: " << long_word_size << std::endl;
+        // std::cout << "long_word: " << long_word << std::endl;
+        // std::cout << "short_word: " << short_word << std::endl;
+        // std::cout << "first_mismatch_index: " << first_mismatch_index << std::endl;
     }
     if (is_match and debug_print)
     {
@@ -143,9 +152,9 @@ bool isMatchWithoutSkipping(const uint short_word_size,
 
 bool areWordsSimilar(std::string word_1,
                      std::string word_2,
+                     const bool debug_print,
                      const float min_charactor_percentage_match,
-                     const bool is_case_sensitive,
-                     const bool debug_print)
+                     const bool is_case_sensitive)
 {
     if (not is_case_sensitive)
     {

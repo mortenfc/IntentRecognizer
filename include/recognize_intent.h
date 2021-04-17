@@ -5,20 +5,6 @@
 #include <string>
 #include <array>
 
-template <class T>
-std::string
-    concatenateStringsToOutput(const std::string& output_prefix, const uint type_match_count, const T& type_structure)
-{
-    std::string output = output_prefix;
-    for (size_t i = 0; i < type_match_count; i++)
-    {
-        output += type_structure.intent_outputs[i] + " ";
-    }
-    output.pop_back();
-
-    return output;
-}
-
 struct Weather
 {
     static const uint array_size = 6;
@@ -44,6 +30,20 @@ struct Fact
     std::array<std::string, 1> intent_outputs{"Get Fact"};
 };
 
-std::string recognizeIntent(const std::string& input_line);
+template <class T>
+std::string
+    concatenateStringsToOutput(const std::string& output_prefix, const uint type_match_count, const T& type_structure)
+{
+    std::string output = output_prefix;
+    for (size_t i = 0; i < type_match_count; i++)
+    {
+        output += type_structure.intent_outputs[i] + " ";
+    }
+    output.pop_back();
+
+    return output;
+};
+
+std::string recognizeIntent(const std::string& input_line, const bool debug_print = false);
 
 #endif /* RECOGNIZEINTENT_H */

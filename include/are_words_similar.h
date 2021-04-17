@@ -32,7 +32,7 @@ bool isMatchWithoutSkipping(const uint short_word_size,
 
 bool areWordsSimilar(std::string word_1,
                      std::string word_2,
+                     const bool debug_print = false,
                      const float min_charactor_percentage_match = 70.0,
-                     const bool is_case_sensitive = false,
-                     const bool debug_print = false);
+                     const bool is_case_sensitive = false);
 #endif /* AREWORDSSIMILAR_H */
