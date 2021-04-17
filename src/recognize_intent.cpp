@@ -48,6 +48,12 @@ std::string recognizeIntent(std::string input_line, const bool debug_print)
         {
             is_weather_match = is_weather_match | areWordsSimilar(input_words[i], weather.weather[j], debug_print);
             is_city_match = is_city_match | areWordsSimilar(input_words[i], weather.city[j], debug_print);
+
+            // Todo something similar
+            // std::vector<std::string> two_city_words;
+            // boost::split(two_city_words,  weather.city[j], [](char c) { return c == ' '; });
+            // bool is_first_city_word_match = areWordsSimilar(two_city_words[0], weather.city[j], debug_print);
+            // if (is_first_city_word_match and ...)
             if (is_weather_match + is_city_match < 2 and i < input_words_size - 1)
             {
                 is_weather_match =
