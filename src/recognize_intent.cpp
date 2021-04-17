@@ -65,7 +65,7 @@ std::string recognizeIntent(const std::string& input_line)
         }
     }
     type_match_count = uint(is_weather_match) + uint(is_city_match);
-    if (type_match_count)
+    if (is_weather_match)
     {
         goto weather_execution;
     }
@@ -77,7 +77,7 @@ std::string recognizeIntent(const std::string& input_line)
         }
     }
     type_match_count = uint(is_calendar_match);
-    if (type_match_count)
+    if (is_calendar_match)
     {
         goto calendar_execution;
     }
@@ -89,7 +89,7 @@ std::string recognizeIntent(const std::string& input_line)
         }
     }
     type_match_count = uint(is_fact_match);
-    if (type_match_count)
+    if (is_fact_match)
     {
         goto fact_execution;
     }
