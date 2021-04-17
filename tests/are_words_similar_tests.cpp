@@ -14,7 +14,7 @@ TEST(findFirstMismatchIndex, character_typo)
 TEST(isMatchWithShortWordSkipping, length_mismatch_char_typo)
 {
     std::string short_word = "weather";
-    std::string long_word = "watherrr";
+    std::string long_word = "wetherrr";
     float min_charactor_percentage_match = 70.0;
     uint first_mismatch_index = 2;
 
@@ -23,25 +23,15 @@ TEST(isMatchWithShortWordSkipping, length_mismatch_char_typo)
                                                  long_word,
                                                  short_word,
                                                  min_charactor_percentage_match,
-                                                 first_mismatch_index,
-                                                 "isMatchWithShortWordSkipping");
-
+                                                 first_mismatch_index);
     ASSERT_TRUE(is_match);
-}
-
-TEST(isMatchWithLongWordSkipping, all_checks)
-{
-    std::string short_word = "wether";
-    std::string long_word = "weather";
-    float min_charactor_percentage_match = 70.0;
-    uint first_mismatch_index = 2;
-    bool is_match = isMatchWithLongWordSkipping(short_word.size(),
-                                                long_word.size(),
-                                                long_word,
-                                                short_word,
-                                                min_charactor_percentage_match,
-                                                first_mismatch_index);
-    ASSERT_TRUE(is_match);
+    is_match = isMatchWithLongWordSkipping(short_word.size(),
+                                           long_word.size(),
+                                           long_word,
+                                           short_word,
+                                           min_charactor_percentage_match,
+                                           first_mismatch_index);
+    ASSERT_FALSE(false);
 
     short_word = "wher";
     long_word = "weather";
@@ -69,6 +59,64 @@ TEST(isMatchWithLongWordSkipping, all_checks)
 
     short_word = "wather";
     long_word = "weather";
+    min_charactor_percentage_match = 100.0;
+    first_mismatch_index = 1;
+    is_match = isMatchWithLongWordSkipping(short_word.size(),
+                                           long_word.size(),
+                                           long_word,
+                                           short_word,
+                                           min_charactor_percentage_match,
+                                           first_mismatch_index);
+    ASSERT_FALSE(is_match);
+}
+
+TEST(isMatchWithLongWordSkipping, all_checks)
+{
+    std::string short_word = "weather";
+    std::string long_word = "wether";
+    float min_charactor_percentage_match = 70.0;
+    uint first_mismatch_index = 2;
+    bool is_match = isMatchWithLongWordSkipping(short_word.size(),
+                                                long_word.size(),
+                                                long_word,
+                                                short_word,
+                                                min_charactor_percentage_match,
+                                                first_mismatch_index);
+    ASSERT_FALSE(is_match);
+    is_match = isMatchWithShortWordSkipping(short_word.size(),
+                                                 long_word.size(),
+                                                 long_word,
+                                                 short_word,
+                                                 min_charactor_percentage_match,
+                                                 first_mismatch_index);
+    ASSERT_TRUE(is_match);
+
+    long_word = "wher";
+    short_word = "weather";
+    min_charactor_percentage_match = 10.0;
+    first_mismatch_index = 1;
+    is_match = isMatchWithLongWordSkipping(short_word.size(),
+                                           long_word.size(),
+                                           long_word,
+                                           short_word,
+                                           min_charactor_percentage_match,
+                                           first_mismatch_index);
+    ASSERT_TRUE(is_match);
+
+    long_word = "weather";
+    short_word = "wther";
+    min_charactor_percentage_match = 90.0;
+    first_mismatch_index = 1;
+    is_match = isMatchWithLongWordSkipping(short_word.size(),
+                                           long_word.size(),
+                                           long_word,
+                                           short_word,
+                                           min_charactor_percentage_match,
+                                           first_mismatch_index);
+    ASSERT_FALSE(is_match);
+
+    long_word = "wather";
+    short_word = "weather";
     min_charactor_percentage_match = 100.0;
     first_mismatch_index = 1;
     is_match = isMatchWithLongWordSkipping(short_word.size(),
@@ -124,30 +172,15 @@ TEST(areWordsSimilar, all_checks)
     is_match = areWordsSimilar(word_1, word_2, min_charactor_percentage_match);
     ASSERT_TRUE(is_match);
 
-    word_1 = "wwweather";
+    word_1 = "wwweatherrr";
     word_2 = "Weather";
     min_charactor_percentage_match = 60.0;
     is_match = areWordsSimilar(word_1, word_2, min_charactor_percentage_match);
     ASSERT_TRUE(is_match);
 
-    word_1 = "wwweatherrr";
+    word_1 = "wwweatherrrr";
     word_2 = "Weather";
     min_charactor_percentage_match = 60.0;
     is_match = areWordsSimilar(word_1, word_2, min_charactor_percentage_match);
     ASSERT_FALSE(is_match);
-}
-
-TEST(areWordsSimilar, same_size_different_chars)
-{
-    ASSERT_TRUE(true);
-}
-
-TEST(areWordsSimilar, different_size_different_chars)
-{
-    ASSERT_TRUE(true);
-}
-
-TEST(areWordsSimilar, is_case_insensitive)
-{
-    ASSERT_TRUE(true);
 }
