@@ -39,7 +39,7 @@ std::string recognizeIntent(const std::string& input_line)
     type_match_count = uint(is_weather_match) + uint(is_city_match);
     if (is_weather_match)
     {
-        goto weather_execution;
+        return concatenateStringsToOutput(output_prefix, type_match_count, weather);
     }
     for (size_t i = 0; i < input_words_size; i++)
     {
@@ -51,7 +51,7 @@ std::string recognizeIntent(const std::string& input_line)
     type_match_count = uint(is_calendar_match);
     if (is_calendar_match)
     {
-        goto calendar_execution;
+        return concatenateStringsToOutput(output_prefix, type_match_count, calendar);
     }
     for (size_t i = 0; i < input_words_size; i++)
     {
@@ -63,42 +63,8 @@ std::string recognizeIntent(const std::string& input_line)
     type_match_count = uint(is_fact_match);
     if (is_fact_match)
     {
-        goto fact_execution;
+        return concatenateStringsToOutput(output_prefix, type_match_count, fact);
     }
 
     return "No intent found";
-
-weather_execution:;
-    {
-        std::string output = output_prefix;
-        for (size_t i = 0; i < type_match_count; i++)
-        {
-            output += weather.intent_outputs[i] + " ";
-        }
-        output.pop_back();
-
-        return output;
-    }
-calendar_execution:;
-    {
-        std::string output = output_prefix;
-        for (size_t i = 0; i < type_match_count; i++)
-        {
-            output += calendar.intent_outputs[i] + " ";
-        }
-        output.pop_back();
-
-        return output;
-    }
-fact_execution:;
-    {
-        std::string output = output_prefix;
-        for (size_t i = 0; i < type_match_count; i++)
-        {
-            output += fact.intent_outputs[i] + " ";
-        }
-        output.pop_back();
-
-        return output;
-    }
 }

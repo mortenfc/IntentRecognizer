@@ -24,7 +24,8 @@ bool isMatchWithLongWordSkipping(const uint short_word_size,
                                  const std::string& long_word,
                                  const std::string& short_word,
                                  const float min_charactor_percentage_match,
-                                 const uint first_mismatch_index)
+                                 const uint first_mismatch_index,
+                                 const bool debug_print)
 {
     //* Inverts short word and long word for DRY.
     return isMatchWithShortWordSkipping(short_word_size,
@@ -33,6 +34,7 @@ bool isMatchWithLongWordSkipping(const uint short_word_size,
                                         long_word,
                                         min_charactor_percentage_match,
                                         first_mismatch_index,
+                                        debug_print,
                                         "isMatchWithLongWordSkipping",
                                         true);
 }
@@ -43,6 +45,7 @@ bool isMatchWithShortWordSkipping(const uint short_word_size,
                                   const std::string& short_word,
                                   const float min_charactor_percentage_match,
                                   const uint first_mismatch_index,
+                                  const bool debug_print,
                                   const std::string& title,
                                   const bool words_are_inverted_but_not_sizes)
 {
@@ -101,7 +104,8 @@ bool isMatchWithoutSkipping(const uint short_word_size,
                             const uint long_word_size,
                             const std::string& long_word,
                             const std::string& short_word,
-                            const float min_charactor_percentage_match)
+                            const float min_charactor_percentage_match,
+                            const bool debug_print)
 {
     const uint delta_size = long_word_size - short_word_size;
     uint char_match_count = 0;
@@ -140,7 +144,8 @@ bool isMatchWithoutSkipping(const uint short_word_size,
 bool areWordsSimilar(std::string word_1,
                      std::string word_2,
                      const float min_charactor_percentage_match,
-                     const bool is_case_sensitive)
+                     const bool is_case_sensitive,
+                     const bool debug_print)
 {
     if (not is_case_sensitive)
     {
@@ -161,7 +166,8 @@ bool areWordsSimilar(std::string word_1,
     }
     uint short_word_size = short_word.size();
     uint long_word_size = long_word.size();
-    if (isMatchWithoutSkipping(short_word_size, long_word_size, long_word, short_word, min_charactor_percentage_match))
+    if (isMatchWithoutSkipping(
+            short_word_size, long_word_size, long_word, short_word, min_charactor_percentage_match, debug_print))
     {
         return true;
     }
@@ -175,7 +181,8 @@ bool areWordsSimilar(std::string word_1,
                                          long_word,
                                          short_word,
                                          min_charactor_percentage_match,
-                                         first_mismatch_index))
+                                         first_mismatch_index,
+                                         debug_print))
         {
             return true;
         }
@@ -185,7 +192,8 @@ bool areWordsSimilar(std::string word_1,
                                         long_word,
                                         short_word,
                                         min_charactor_percentage_match,
-                                        first_mismatch_index))
+                                        first_mismatch_index,
+                                        debug_print))
         {
             return true;
         }

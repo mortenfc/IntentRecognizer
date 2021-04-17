@@ -1,6 +1,8 @@
 #include <are_words_similar.h>
 #include <gtest/gtest.h>
 
+bool DEBUG_PRINT = false;
+
 TEST(findFirstMismatchIndex, character_typo)
 {
     std::string short_word = "waether";
@@ -23,14 +25,16 @@ TEST(isMatchWithShortWordSkipping, length_mismatch_char_typo)
                                                  long_word,
                                                  short_word,
                                                  min_charactor_percentage_match,
-                                                 first_mismatch_index);
+                                                 first_mismatch_index,
+                                                 DEBUG_PRINT);
     ASSERT_TRUE(is_match);
     is_match = isMatchWithLongWordSkipping(short_word.size(),
                                            long_word.size(),
                                            long_word,
                                            short_word,
                                            min_charactor_percentage_match,
-                                           first_mismatch_index);
+                                           first_mismatch_index,
+                                           DEBUG_PRINT);
     ASSERT_FALSE(false);
 
     short_word = "wher";
@@ -42,7 +46,8 @@ TEST(isMatchWithShortWordSkipping, length_mismatch_char_typo)
                                            long_word,
                                            short_word,
                                            min_charactor_percentage_match,
-                                           first_mismatch_index);
+                                           first_mismatch_index,
+                                           DEBUG_PRINT);
     ASSERT_TRUE(is_match);
 
     short_word = "weather";
@@ -54,7 +59,8 @@ TEST(isMatchWithShortWordSkipping, length_mismatch_char_typo)
                                            long_word,
                                            short_word,
                                            min_charactor_percentage_match,
-                                           first_mismatch_index);
+                                           first_mismatch_index,
+                                           DEBUG_PRINT);
     ASSERT_FALSE(is_match);
 
     short_word = "wather";
@@ -66,7 +72,8 @@ TEST(isMatchWithShortWordSkipping, length_mismatch_char_typo)
                                            long_word,
                                            short_word,
                                            min_charactor_percentage_match,
-                                           first_mismatch_index);
+                                           first_mismatch_index,
+                                           DEBUG_PRINT);
     ASSERT_FALSE(is_match);
 }
 
@@ -81,14 +88,16 @@ TEST(isMatchWithLongWordSkipping, all_checks)
                                                 long_word,
                                                 short_word,
                                                 min_charactor_percentage_match,
-                                                first_mismatch_index);
+                                                first_mismatch_index,
+                                                DEBUG_PRINT);
     ASSERT_FALSE(is_match);
     is_match = isMatchWithShortWordSkipping(short_word.size(),
-                                                 long_word.size(),
-                                                 long_word,
-                                                 short_word,
-                                                 min_charactor_percentage_match,
-                                                 first_mismatch_index);
+                                            long_word.size(),
+                                            long_word,
+                                            short_word,
+                                            min_charactor_percentage_match,
+                                            first_mismatch_index,
+                                            DEBUG_PRINT);
     ASSERT_TRUE(is_match);
 
     long_word = "wher";
@@ -100,7 +109,8 @@ TEST(isMatchWithLongWordSkipping, all_checks)
                                            long_word,
                                            short_word,
                                            min_charactor_percentage_match,
-                                           first_mismatch_index);
+                                           first_mismatch_index,
+                                           DEBUG_PRINT);
     ASSERT_TRUE(is_match);
 
     long_word = "weather";
@@ -112,7 +122,8 @@ TEST(isMatchWithLongWordSkipping, all_checks)
                                            long_word,
                                            short_word,
                                            min_charactor_percentage_match,
-                                           first_mismatch_index);
+                                           first_mismatch_index,
+                                           DEBUG_PRINT);
     ASSERT_FALSE(is_match);
 
     long_word = "wather";
@@ -124,7 +135,8 @@ TEST(isMatchWithLongWordSkipping, all_checks)
                                            long_word,
                                            short_word,
                                            min_charactor_percentage_match,
-                                           first_mismatch_index);
+                                           first_mismatch_index,
+                                           DEBUG_PRINT);
     ASSERT_FALSE(is_match);
 }
 
