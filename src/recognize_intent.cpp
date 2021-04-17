@@ -37,26 +37,31 @@ std::string recognizeIntent(const std::string& input_line)
             // std::cout << "weather_word: " << weather_word << "\n";
             is_weather_match = is_weather_match | areWordsSimilar(input_words[i], weather.weather[j]);
             is_city_match = is_city_match | areWordsSimilar(input_words[i], weather.city[j]);
+            // std::cout << "input_words[i]: " << input_words[i] << "\n";
+            // std::cout << "weather.weather[j]: " << weather.weather[j] << "\n";
+            // std::cout << "weather.city[j]: " << weather.city[j] << "\n";
+            // std::cout << "is_weather_match: " << is_weather_match << "\n";
+            // std::cout << "is_city_match: " << is_city_match << "\n";
             if (is_weather_match + is_city_match < 2 and i < input_words_size - 1)
             {
-                std::cout << "i " << i << " | j " << j << "\n";
-                std::cout << "input_words[i] | input_words[i + 1]: " << input_words[i] << " | " << input_words[i + 1]
-                          << "\n";
-                std::cout << "weather.weather[j]: " << weather.weather[j] << "\n";
+                // std::cout << "i " << i << " | j " << j << "\n";
+                // std::cout << "input_words[i] | input_words[i + 1]: " << input_words[i] << " | " << input_words[i + 1]
+                //           << "\n";
+                // std::cout << "weather.weather[j]: " << weather.weather[j] << "\n";
                 is_weather_match =
                     is_weather_match | areWordsSimilar(input_words[i] + input_words[i + 1], weather.weather[j]);
                 is_city_match =
                     is_city_match | areWordsSimilar(input_words[i] + input_words[i + 1], weather.city[j]);
-                std::cout << "is_weather_match: " << is_weather_match << "\n";
-                std::cout << "is_city_match: " << is_city_match << "\n";
+                // std::cout << "is_weather_match: " << is_weather_match << "\n";
+                // std::cout << "is_city_match: " << is_city_match << "\n";
             }
-            else
-            {
-                std::cout << "input_words[i]: " << input_words[i] << "\n";
-                std::cout << "weather.weather[j]: " << weather.weather[j] << "\n";
-                std::cout << "is_weather_match: " << is_weather_match << "\n";
-                std::cout << "is_city_match: " << is_city_match << "\n";
-            }
+            // else
+            // {
+            //     std::cout << "input_words[i]: " << input_words[i] << "\n";
+            //     std::cout << "weather.weather[j]: " << weather.weather[j] << "\n";
+            //     std::cout << "is_weather_match: " << is_weather_match << "\n";
+            //     std::cout << "is_city_match: " << is_city_match << "\n";
+            // }
         }
     }
     type_match_count = uint(is_weather_match) + uint(is_city_match);
