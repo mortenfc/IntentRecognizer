@@ -18,8 +18,14 @@ TEST(isMatchWithoutSkipping, all_checks)
     std::string short_word = "rayn?";
     std::string long_word = "rain?";
     float min_charactor_percentage_match = 70.0;
-
     bool is_match = isMatchWithoutSkipping(
+        short_word.size(), long_word.size(), long_word, short_word, min_charactor_percentage_match, DEBUG_PRINT);
+    ASSERT_TRUE(is_match);
+
+    short_word = "rayn";
+    long_word = "rain";
+    min_charactor_percentage_match = 70.0;
+    is_match = isMatchWithoutSkipping(
         short_word.size(), long_word.size(), long_word, short_word, min_charactor_percentage_match, DEBUG_PRINT);
     ASSERT_TRUE(is_match);
 }
@@ -212,4 +218,10 @@ TEST(areWordsSimilar, all_checks)
     min_charactor_percentage_match = 60.0;
     is_match = areWordsSimilar(word_1, word_2, DEBUG_PRINT, min_charactor_percentage_match);
     ASSERT_FALSE(is_match);
+
+    word_1 = "rayn";
+    word_2 = "rain";
+    min_charactor_percentage_match = 70.0;
+    is_match = areWordsSimilar(word_1, word_2, DEBUG_PRINT, min_charactor_percentage_match);
+    ASSERT_TRUE(is_match);
 }

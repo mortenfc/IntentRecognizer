@@ -44,6 +44,8 @@ std::string
     return output;
 };
 
-std::string recognizeIntent(const std::string& input_line, const bool debug_print = false);
+bool isSpecialCharacter(const char c);
+
+std::string recognizeIntent(std::string input_line, const bool debug_print = false);
 
 #endif /* RECOGNIZEINTENT_H */

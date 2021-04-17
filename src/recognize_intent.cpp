@@ -7,8 +7,28 @@
 #include <string>
 #include <iostream>
 
-std::string recognizeIntent(const std::string& input_line, const bool debug_print)
+bool isSpecialCharacter(const char c)
 {
+    switch (c)
+    {
+        case '(':
+        case ')':
+        case '-':
+        case '!':
+        case '?':
+        case '.':
+        case ',':
+            return true;
+        default:
+            return false;
+    }
+}
+
+std::string recognizeIntent(std::string input_line, const bool debug_print)
+{
+    //* Remove special characers from input
+    input_line.erase(std::remove_if(input_line.begin(), input_line.end(), &isSpecialCharacter), input_line.end());
+
     std::vector<std::string> input_words;
     boost::split(input_words, input_line, [](char c) { return c == ' '; });
 
@@ -30,8 +50,9 @@ std::string recognizeIntent(const std::string& input_line, const bool debug_prin
             is_city_match = is_city_match | areWordsSimilar(input_words[i], weather.city[j], debug_print);
             if (is_weather_match + is_city_match < 2 and i < input_words_size - 1)
             {
-                is_weather_match = is_weather_match |
-                                   areWordsSimilar(input_words[i] + input_words[i + 1], weather.weather[j], debug_print);
+                is_weather_match =
+                    is_weather_match |
+                    areWordsSimilar(input_words[i] + input_words[i + 1], weather.weather[j], debug_print);
                 is_city_match =
                     is_city_match | areWordsSimilar(input_words[i] + input_words[i + 1], weather.city[j], debug_print);
             }

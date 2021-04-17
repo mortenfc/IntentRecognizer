@@ -1,4 +1,5 @@
 cd build
+rm all_tests_binary
 cmake ..
 make
 

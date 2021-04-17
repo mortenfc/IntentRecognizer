@@ -44,19 +44,18 @@ TEST(recognizeIntent, mixed_up_words)
     input_line = "Will it rain tomorrow?";
     output = recognizeIntent(input_line, DEBUG_PRINT);
     ASSERT_EQ(output, "Intent: Get Weather") << "With input line: \"" + input_line + "\"";
-    // input_line = "Will it rayn?";
-    // output = recognizeIntent(input_line, DEBUG_PRINT);
-    // ASSERT_EQ(output, "Intent: Get Weather") << "With input line: \"" + input_line + "\"";
-    // input_line = "Will it ran?";
-    // output = recognizeIntent(input_line, DEBUG_PRINT);
-    // ASSERT_EQ(output, "Intent: Get Weather") << "With input line: \"" + input_line + "\"";
-    // input_line = "Will it rn?";
-    // output = recognizeIntent(input_line, DEBUG_PRINT);
-    // ASSERT_EQ(output, output_fail) << "With input line: \"" + input_line + "\"";
-
-    // input_line = "Will it rain tomorrow in Paris?";
-    // output = recognizeIntent(input_line, DEBUG_PRINT);
-    // ASSERT_EQ(output, "Intent: Get Weather") << "With input line: \"" + input_line + "\"";
+    input_line = "Will it rayn?";
+    output = recognizeIntent(input_line, DEBUG_PRINT);
+    ASSERT_EQ(output, "Intent: Get Weather") << "With input line: \"" + input_line + "\"";
+    input_line = "It will rayn..! Right?";
+    output = recognizeIntent(input_line, DEBUG_PRINT);
+    ASSERT_EQ(output, "Intent: Get Weather") << "With input line: \"" + input_line + "\"";
+    input_line = "Will it ran?";
+    output = recognizeIntent(input_line, DEBUG_PRINT);
+    ASSERT_EQ(output, "Intent: Get Weather") << "With input line: \"" + input_line + "\"";
+    input_line = "Will it rn?";
+    output = recognizeIntent(input_line, DEBUG_PRINT);
+    ASSERT_EQ(output, output_fail) << "With input line: \"" + input_line + "\"";
 
     //* Weather City
     input_line = "What is the wether like in Pais today?";
@@ -83,6 +82,18 @@ TEST(recognizeIntent, mixed_up_words)
     input_line = "What is the bear like in NYork?";
     output = recognizeIntent(input_line, DEBUG_PRINT);
     ASSERT_EQ(output, output_fail) << "With input line: \"" + input_line + "\"";
+    input_line = "Will it rain tomorrow in Paris?";
+    output = recognizeIntent(input_line, DEBUG_PRINT);
+    ASSERT_EQ(output, "Intent: Get Weather City") << "With input line: \"" + input_line + "\"";
+    input_line = "Wil it rayn! tomorow in Pris?";
+    output = recognizeIntent(input_line, DEBUG_PRINT);
+    ASSERT_EQ(output, "Intent: Get Weather City") << "With input line: \"" + input_line + "\"";
+    input_line = "Wil it rn over in Pris?";
+    output = recognizeIntent(input_line, DEBUG_PRINT);
+    ASSERT_EQ(output, output_fail) << "With input line: \"" + input_line + "\"";
+    // todo: following line has bug with merging "rn in" to "rnin" and matching it with "rain"
+    // todo: input_line = "Wil it rn in Pris?";
+    // todo fix could be to only include next word if first word had a match
 
     //* Calendar
     input_line = "What is something like in NYork tomorrow?";
