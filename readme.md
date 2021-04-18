@@ -5,9 +5,9 @@
 default parameter in a function in [this file](include/are_words_similar.h)
 
 ## The tests tell the limitations and extent of functionality, check them out
-[Link to system tests](./tests/recognize_intent_tests.cpp).
-[Link to unit tests](./tests/are_words_similar_tests.cpp).
-[Link to words that are searched for](./include/are_words_similar.h).
+- [Link to system tests](./tests/recognize_intent_tests.cpp).
+- [Link to unit tests](./tests/are_words_similar_tests.cpp).
+- [Link to words that are searched for](./include/are_words_similar.h).
 
 To run the tests:
 
