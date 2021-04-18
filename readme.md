@@ -11,15 +11,15 @@ default parameter in a function in [this file](include/are_words_similar.h)
 
 To run the tests:
 
-"""bash
+```bash
 bash test_run_after_build.sh
-"""
+```
 
 ## Running the cin cout wrapper of the intent recognizer
 
-"""bash
+```bash
 bash main_run_after_build.sh
-"""
+```
 
 ## Requirements of the project
 [Link to markdown](./challenges_IntentRecognizer).
