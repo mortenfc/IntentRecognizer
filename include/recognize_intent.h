@@ -18,7 +18,8 @@ struct Weather
 
 struct Calendar
 {
-    std::array<std::string, 6> calendar{"tomorrow", "free", "time", "available", "today", "after tomorrow"};
+    std::array<std::string, 10> calendar{
+        "tomorrow", "free", "time", "available", "today", "after tomorrow", "calendar", "day", "weekend", "later"};
 
     std::array<std::string, 1> intent_outputs{"Check Calendar"};
 };
