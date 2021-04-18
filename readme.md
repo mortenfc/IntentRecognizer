@@ -15,7 +15,7 @@ To run the tests:
 bash test_run_after_build.sh
 ```
 
-## Running the cin cout wrapper of the intent recognizer
+## Running the cin >> cout wrapper of the intent recognizer
 
 ```bash
 bash main_run_after_build.sh
