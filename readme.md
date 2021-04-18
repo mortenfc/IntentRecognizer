@@ -22,4 +22,4 @@ bash main_run_after_build.sh
 ```
 
 ## Requirements of the project
-[Link to markdown](./challenges_IntentRecognizer).
+[Link to markdown](./challenges_IntentRecognizer.md).
