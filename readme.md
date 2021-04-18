@@ -1,4 +1,5 @@
-# Intent Recognizer - proof of concept
+# Intent Recognizer
+### Proof of concept
 - It matches certain words to certain categories to guess your intent.
 - It can detect most spelling mistakes by not requring a 100% character match, but a specificaly amount, given as 
 default param in [this file](include/are_words_similar.h)
